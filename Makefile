@@ -34,8 +34,8 @@ printmakehelp_and_reminder: runsim.cpp Makefile
 obj/sim.o: src/sim.cpp src/sim.hh src/simConfStr.hh
 	$(CXX) -c -o $@ $< $(CXXFLAGS) 
 
-runsim: obj/sim.o runsim.cpp
-	$(CXX) -o $@ $^ $(CXXFLAGS)
+runsim: obj/sim.o runsim.cpp src/sierpinskiStr.hh src/simConfStr.hh
+	$(CXX) -o $@ obj/sim.o runsim.cpp $(CXXFLAGS)
 
 clean:
 	rm -rf runsim

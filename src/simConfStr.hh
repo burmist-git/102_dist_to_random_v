@@ -16,7 +16,7 @@
 
 struct simConfStr {
   //
-  Int_t  n;
+  Int_t n;
   Int_t ver_n;
   Double_t side_size;
   TString ratio_s;

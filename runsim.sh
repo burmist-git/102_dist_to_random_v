@@ -4,6 +4,7 @@ function printHelp {
     echo " --> ERROR in input arguments "
     echo "  -d             : default"
     echo "  -t             : test reading of conf.conf"
+    echo "  -ts            : test sierpinski polygon (conf.conf -> test_sierpinski.root)"
     echo "  -p             : plotdigitizer"
     echo "  --timeReversal : timeReversal"
     echo "  -g             : gaus dist"
@@ -17,6 +18,8 @@ else
 	./runsim 0 conf.conf 30000 trajectories.root
     elif [ "$1" = "-t" ]; then
 	./runsim 100 conf.conf
+    elif [ "$1" = "-ts" ]; then
+	./runsim 101 conf.conf test_sierpinski.root
     elif [ "$1" = "-p" ]; then
 	#./runsim 1 conf.conf vadymovich.csv 3000 trajectories_vadym.root
 	./runsim 1 conf.conf dashameer.csv 3000 trajectories_dashameer.root
