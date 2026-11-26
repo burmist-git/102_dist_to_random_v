@@ -31,7 +31,7 @@ printmakehelp_and_reminder: runsim.cpp Makefile
 	$(info  * $$^ --------------------------------> $^ *)
 	$(info  /***********************************************************/)
 
-obj/sim.o: src/sim.cpp src/sim.hh src/simConfStr.hh
+obj/sim.o: src/sim.cpp src/sim.hh src/simConfStr.hh src/sierpinskiStr.hh
 	$(CXX) -c -o $@ $< $(CXXFLAGS) 
 
 runsim: obj/sim.o runsim.cpp src/sierpinskiStr.hh src/simConfStr.hh

@@ -34,5 +34,5 @@ There are no tests or linters.
 This repo was forked from an earlier 2D N-body/trajectory simulation and stripped down:
 - `sim::runsim` is an empty stub.
 - `save_graph` and `save_gif` bodies are commented out; they reference removed pieces (`_bodyState_v` / `bodyStateStr.hh`, `frame_x0`, `frame_y0`, `frame_H`) and must be rewritten against the new config (`n`, `ver_n`, `side_size`, `ratio_s`/`ratio`, `frame_L`, `frame_margine`) before re-enabling.
-- `runsim.sh` modes other than `-d` and `-t` (`-p`, `--timeReversal`, `-g`) call runIDs 1, 11, 2 that no longer exist in `runsim.cpp`, and reference CSV inputs that were deleted.
+- `runsim.sh` modes other than `-d` and `-t` (`-p`, `-g`) call runIDs 1, 2 that no longer exist in `runsim.cpp`, and reference CSV inputs that were deleted.
 - Output conventions from the old code (to keep `plots.C` working): ROOT file contains `TGraph`s named `gr_frame`, `gr_tr_<i>` (trajectory), `gr_v_<i>` (velocity); GIF frames go to `tr_gif/gr_<k>.gif` plus a generated `tr_gif/mrg.sh` that merges them with `gifsicle`.

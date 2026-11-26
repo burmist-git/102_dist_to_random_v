@@ -23,6 +23,7 @@ struct simConfStr {
   Double_t ratio;
   Double_t frame_L;
   Double_t frame_margine;
+  Int_t n_gifs;
   //
   simConfStr(){
     n = 1000;
@@ -32,6 +33,7 @@ struct simConfStr {
     ratio = 1.0/2.0;
     frame_L = 1.0;
     frame_margine = 0.1;
+    n_gifs = 100;
   }
   void printInfo(Int_t verboseLevel = 1){
     std::cout<<"--------------------"<<std::endl;
@@ -42,7 +44,8 @@ struct simConfStr {
 	       <<"ratio_s       "<<ratio_s<<std::endl
 	       <<"ratio         "<<ratio<<std::endl
 	       <<"frame_L       "<<frame_L<<std::endl
-	       <<"frame_margine "<<frame_margine<<std::endl;
+	       <<"frame_margine "<<frame_margine<<std::endl
+	       <<"n_gifs        "<<n_gifs<<std::endl;
     }
   }  
   // Parse "a:b" (optionally quoted) into ratio_s and ratio = a/b
@@ -84,6 +87,8 @@ struct simConfStr {
 	  confFile>>frame_L;
 	if(mot == "frame_margine:")
 	  confFile>>frame_margine;
+	if(mot == "n_gifs:")
+	  confFile>>n_gifs;
       }
       confFile.close();
     }

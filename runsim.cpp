@@ -107,15 +107,13 @@ int main(int argc, char *argv[]){
   clock_t start, finish;
   start = clock();
   //
-  if(argc == 5 && atoi(argv[1])==0){
+  if(argc == 4 && atoi(argv[1])==0){
     //
     TString input_configuration_file = argv[2];
-    Int_t nsteps = atoi(argv[3]);
-    TString outputRootFileWith_graph = argv[4];
+    TString outputRootFileWith_graph = argv[3];
     //
     std::cout<<"runsim"<<std::endl
 	     <<"input_configuration_file        "<<input_configuration_file<<std::endl
-	     <<"nsteps                          "<<nsteps<<std::endl
     	     <<"outputRootFileWith_graph        "<<outputRootFileWith_graph<<std::endl;
     //
     simConfStr *conf = new simConfStr();
@@ -123,12 +121,13 @@ int main(int argc, char *argv[]){
     conf->printInfo(2);
     //
     //
+    //
     UInt_t seed = 12313;
     TRandom3 *rnd = new TRandom3(seed);
     sim *gsim = new sim( rnd, conf);
-    gsim->runsim(nsteps);
+    gsim->runsim(conf->n);
     gsim->save_graph(outputRootFileWith_graph);
-    gsim->save_gif("tr_gif", 20);
+    gsim->save_gif("tr_gif", conf->n_gifs);
     //
     delete gsim; // also deletes rnd and conf
   }
@@ -157,8 +156,7 @@ int main(int argc, char *argv[]){
   else{
     std::cout<<"  runID [1] = 0                        "<<std::endl
  	     <<"        [2] - input configuration file "<<std::endl
-	     <<"        [3] - number of steps          "<<std::endl
-    	     <<"        [4] - output root file with graphs"<<std::endl;
+    	     <<"        [3] - output root file with graphs"<<std::endl;
     std::cout<<"  runID [1] = 100 (test read conf)     "<<std::endl
  	     <<"        [2] - input configuration file "<<std::endl;
     std::cout<<"  runID [1] = 101 (test sierpinski)    "<<std::endl

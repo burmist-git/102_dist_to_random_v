@@ -25,6 +25,10 @@ struct sierpinskiStr {
   Int_t n;
   Double_t side_size;
   Double_t R;              // circumradius
+  Double_t xmin;
+  Double_t xmax;
+  Double_t ymin;
+  Double_t ymax;
   std::vector<Double_t> x; // vertex x positions
   std::vector<Double_t> y; // vertex y positions
   //
@@ -32,6 +36,10 @@ struct sierpinskiStr {
     n = 0;
     side_size = 0.0;
     R = 0.0;
+    xmin = 0.0;
+    xmax = 0.0;
+    ymin = 0.0;
+    ymax = 0.0;
   }
   sierpinskiStr(const simConfStr &conf){
     fromConf(conf);
@@ -54,6 +62,27 @@ struct sierpinskiStr {
       x.push_back(tmp_v.X());
       y.push_back(tmp_v.Y());
     }
+    // bounding box of the figure
+    xmin = xmax = x.at(0);
+    ymin = ymax = y.at(0);
+    for(Int_t i = 1; i < n; i++){
+      xmin = TMath::Min(xmin, x.at(i));
+      xmax = TMath::Max(xmax, x.at(i));
+      ymin = TMath::Min(ymin, y.at(i));
+      ymax = TMath::Max(ymax, y.at(i));
+    }
+  }
+  // Point (xp, yp) inside the polygon (boundary included).
+  // Vertices are ordered counter-clockwise, so the point is inside
+  // if it is on the left of (or on) every edge.
+  Bool_t isInside(Double_t xp, Double_t yp) const {
+    for(Int_t i = 0; i < n; i++){
+      Int_t j = (i + 1) % n;
+      Double_t cross = (x.at(j) - x.at(i)) * (yp - y.at(i)) - (y.at(j) - y.at(i)) * (xp - x.at(i));
+      if(cross < 0.0)
+	return false;
+    }
+    return true;
   }
   void printInfo(){
     std::cout<<"--------------------"<<std::endl

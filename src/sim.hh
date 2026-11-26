@@ -34,7 +34,7 @@ public:
   //
   void runsim(Int_t nsteps = 100);
   void save_graph(TString outputRootFileWith_graph = "trajectories.root");
-  void save_gif(TString output_gif = "tr_gif", Int_t reduction_f = 10);
+  void save_gif(TString output_gif = "tr_gif", Int_t n_gifs = 100);
 
 private:
   //
@@ -42,8 +42,7 @@ private:
   simConfStr *_conf;
 
   TGraph *_gr_frame;
-    
-  TFile *_f1_reimport = NULL;
+  TGraph *_gr;
   
 };
 

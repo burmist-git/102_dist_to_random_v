@@ -2,3 +2,5 @@
 *.root
 obj
 runsim
+tr_gif/
+*.pdf
